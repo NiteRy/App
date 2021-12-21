@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Horta do vizinho</string>
+    <string name="criar_conta">Criar Conta</string>
+    <string name="fazer_login">Iniciar Sessão</string>
+    <string name="sair">Sair</string>
+    <string name="horta_do_vizinho">Horta do vizinho</string>
+    <string name="textview">TextView</string>
+
+    <string-array name="verif">
+        <item>Verificação de Idade</item>
+        <item>Possuí mais de 18 anos?</item>
+        <item>Sim</item>
+        <item>Não</item>
+    </string-array>
+
+    <string-array name="pais">
+        <item>Insira o seu país</item>
+        <item>Reino Unido</item>
+        <item>Portugal</item>
+        <item>Espanha</item>
+        <item>Espanha</item>
+        <item>França</item>
+    </string-array>
+
+    <string-array name="gen">
+        <item>Insira o seu género</item>
+        <item>Masculino</item>
+        <item>Feminino</item>
+        <item>Não Binário</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Neighbour\'s vegetables garden</string>
+    <string name="criar_conta">Create Account</string>
+    <string name="fazer_login">Login</string>
+    <string name="sair">Exit</string>
+    <string name="horta_do_vizinho">Neighbour\'s vegetables garden</string>
+
+    <string-array name="verif">
+        <item>Age Verification</item>
+        <item>Do you have more than 18?</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+</resources>

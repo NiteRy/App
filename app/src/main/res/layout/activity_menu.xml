@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".menu">
+
+    <TextView
+        android:id="@+id/Titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="25dp"
+        android:text="Menu"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_signup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="50dp"
+        android:onClick="sign"
+        android:text="@string/criar_conta"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_signin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Titulo" />
+
+    <Button
+        android:id="@+id/btn_signin"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="50dp"
+        android:onClick="log"
+        android:text="@string/fazer_login"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_exit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_signup" />
+
+    <Button
+        android:id="@+id/btn_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="100dp"
+        android:onClick="exit"
+        android:text="@string/sair"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_signin" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="155dp"
+        android:layout_marginBottom="25dp"
+        android:onClick="prod"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_exit" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

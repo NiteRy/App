@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "807716729698",
+    "firebase_url": "https://horta-do-vizinho-default-rtdb.firebaseio.com",
+    "project_id": "horta-do-vizinho",
+    "storage_bucket": "horta-do-vizinho.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807716729698:android:8ca9f6c89a74788feeb23b",
+        "android_client_info": {
+          "package_name": "com.example.hortadovizinho"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807716729698-fuq2t1h3aqu94divolh8e9j11g6ji5gv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFwgQYybsms_nUsobZ_dfaEXuhlYVKWX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807716729698-fuq2t1h3aqu94divolh8e9j11g6ji5gv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807716729698:android:963dd558a6362ad3eeb23b",
+        "android_client_info": {
+          "package_name": "horta.data"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807716729698-fuq2t1h3aqu94divolh8e9j11g6ji5gv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFwgQYybsms_nUsobZ_dfaEXuhlYVKWX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807716729698-fuq2t1h3aqu94divolh8e9j11g6ji5gv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

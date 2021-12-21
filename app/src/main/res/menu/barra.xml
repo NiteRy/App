@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/perfil"
+        android:icon="@drawable/pessoa"
+        android:title="Perfil"
+        tools:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/produto"
+        android:icon="@drawable/cesto"
+        android:title="Produtos"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/carro"
+        android:title="Carrinho"
+        app:showAsAction="ifRoom"
+        tools:icon="@drawable/carro" />
+    <item
+        android:id="@+id/exit"
+        android:icon="@android:drawable/ic_lock_power_off"
+        android:title="sair"
+        app:showAsAction="ifRoom" />
+</menu>
