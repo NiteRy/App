@@ -1,22 +1,25 @@
 package com.example.hortadovizinho;
 
 public class user {
-    private Integer id;
     private String nome;
+    private String apelido;
     private String mail;
     private String morada;
-    private String pais;
-    private int datanasc;
-    private String genero;
-    private Integer nif;
-    private Integer telefone;
+    private String codPostal;
     private String password;
     private String password2;
 
-    public Integer getId() {return id;}
 
-    public void setId(Integer id) {this.id = id;}
-
+    public user(String nome,String apelido,String mail,String morada,String codPostal,String password,String password2)
+    {
+        this.nome=nome;
+        this.apelido=apelido;
+        this.mail=mail;
+        this.morada=morada;
+        this.codPostal=codPostal;
+        this.password=password;
+        this.password2=password2;
+    }
 
     public String getNome() {return nome;}
 
@@ -33,29 +36,14 @@ public class user {
     public void setMorada(String morada) {this.morada = morada;}
 
 
-    public String getp() {return pais;}
+    public String getCodP() {return codPostal;}
 
-    public void setp(String pais) {this.pais = pais;}
-
-
-    public Integer getData() {return datanasc;}
-
-    public void setData(Integer datanasc) {this.datanasc = datanasc;}
+    public void setCodP(String codPostal) {this.codPostal = codPostal;}
 
 
-    public String getGen() {return genero;}
+    public String getApl() {return apelido;}
 
-    public void setGen(String genero) {this.genero = genero;}
-
-
-    public Integer getNif() {return nif;}
-
-    public void setNif(Integer nif) {this.nif = nif;}
-
-
-    public Integer getTelefone() {return telefone;}
-
-    public void setTelefone(Integer telefone) {this.telefone = telefone;}
+    public void setApl(String apelido) {this.apelido = apelido;}
 
 
     public String getPassword() {return password;}
@@ -67,9 +55,4 @@ public class user {
 
     public void setPassword2(String password2) {this.password2 = password2;}
 
-
-    @Override
-    public String toString(){
-        return nome;
-    }
 }

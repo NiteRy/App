@@ -5,29 +5,60 @@
     <string name="fazer_login">Iniciar Sessão</string>
     <string name="sair">Sair</string>
     <string name="horta_do_vizinho">Horta do vizinho</string>
-    <string name="textview">TextView</string>
 
-    <string-array name="verif">
+    <string-array name="ver">
         <item>Verificação de Idade</item>
         <item>Possuí mais de 18 anos?</item>
         <item>Sim</item>
         <item>Não</item>
     </string-array>
 
-    <string-array name="pais">
-        <item>Insira o seu país</item>
-        <item>Reino Unido</item>
-        <item>Portugal</item>
-        <item>Espanha</item>
-        <item>Espanha</item>
-        <item>França</item>
+    <string-array name="verif">
+        <item>Recuperação da password</item>
+        <item>Insira a senha</item>
+        <item>Confirmar</item>
+        <item>Cancelar</item>
+        <item>Link enviado</item>
+        <item>Erro ao enviar o link</item>
+        <item>Conta criada. Verifique a sua conta</item>
     </string-array>
 
-    <string-array name="gen">
-        <item>Insira o seu género</item>
-        <item>Masculino</item>
-        <item>Feminino</item>
-        <item>Não Binário</item>
+    <string-array name="con">
+        <item>Verifique a ligação</item>
+        <item>Conectar</item>
+        <item>Cancelar</item>
     </string-array>
+
+    <string-array name="unidade">
+        <item> </item>
+        <item>Kg</item>
+        <item>Gr</item>
+        <item>L</item>
+        <item>Dúzia</item>
+        <item>1/2 dúzia</item>
+        <item>caixa</item>
+        <item>Saco</item>
+        <item>Molho</item>
+        <item>Frasco</item>
+    </string-array>
+
+    <string-array name="categoria">
+        <item> </item>
+        <item>Frutos secos</item>
+        <item>Animal</item>
+        <item>Vegetal</item>
+    </string-array>
+
+    <string-array name="subcat">
+        <item> </item>
+    </string-array>
+
+    <string-array name="seccao">
+        <item> </item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+
 
 </resources>

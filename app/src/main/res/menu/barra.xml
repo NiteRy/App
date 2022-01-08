@@ -8,15 +8,10 @@
         android:title="Perfil"
         tools:showAsAction="ifRoom" />
     <item
-        android:id="@+id/produto"
+        android:id="@+id/pro"
         android:icon="@drawable/cesto"
         android:title="Produtos"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/carro"
-        android:title="Carrinho"
-        app:showAsAction="ifRoom"
-        tools:icon="@drawable/carro" />
     <item
         android:id="@+id/exit"
         android:icon="@android:drawable/ic_lock_power_off"

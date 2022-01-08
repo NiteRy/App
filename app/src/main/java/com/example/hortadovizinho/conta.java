@@ -1,35 +1,43 @@
 package com.example.hortadovizinho;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.res.Resources;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+import java.io.File;
+
 
 public class conta extends AppCompatActivity {
 
-    FirebaseAuth sign;
-
-    EditText a,b,c,d,e,f,g,h;
-    ListView t;
-    Spinner s1,s2;
-    String str1,str2,t1,t2,t3,t4,t5,t6,t7,t8,txt1,txt2;
+    EditText a,b,c,d,e,f,g;
+    String t1,t2,t3,t4,t5,t6,t7;
 
 
     @Override
@@ -37,100 +45,159 @@ public class conta extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conta);
 
-        sign= FirebaseAuth.getInstance();
-
-        t=findViewById(R.id.caixa);
-
         a=findViewById(R.id.nome);
-        b=findViewById(R.id.mail);
-        c=findViewById(R.id.morada);
-        d=findViewById(R.id.data);
-        e=findViewById(R.id.nif);
-        f=findViewById(R.id.tel);
-        g=findViewById(R.id.pass);
-        h=findViewById(R.id.pass2);
+        b=findViewById(R.id.apelido);
+        c=findViewById(R.id.mail);
+        d=findViewById(R.id.morada);
+        e=findViewById(R.id.codP);
+        f=findViewById(R.id.pass);
+        g=findViewById(R.id.pass2);
 
-        s1=findViewById(R.id.pais);
-        s2=findViewById(R.id.genero);
+        e.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        ArrayAdapter<CharSequence> ad;
-        ad = ArrayAdapter.createFromResource(this,R.array.gen, android.R.layout.simple_spinner_item);
-        s1.setAdapter(ad);
-        ArrayAdapter<CharSequence> ad2;
-        ad2 = ArrayAdapter.createFromResource(this,R.array.pais, android.R.layout.simple_spinner_item);
-        s2.setAdapter(ad2);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(e.length()==4){
+                    e.append("-");
+                }
+            }
+        });
+
+        if(!teste(this))
+        {
+            Resources res = getResources();
+            String [] txt = res.getStringArray(R.array.con);
+            AlertDialog.Builder net=new AlertDialog.Builder(conta.this);
+            net.setCancelable(false);
+            net.setTitle(txt[0]);
+            net.setPositiveButton(txt[1], new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    startActivity(new Intent(getApplicationContext(),conta.class));
+                }
+            });
+            net.setNegativeButton(txt[2], new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    conta.this.finishAffinity();
+                }
+            });
+            net.show();
+        }
+
+    }
+
+    private boolean teste(conta conta)
+    {
+        ConnectivityManager connectivityManager= (ConnectivityManager) conta.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo wifi=connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo conn=connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        if((wifi!=null && wifi.isConnected()) || (conn!=null && conn.isConnected()))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 
     }
 
     public void Signup(View v)
     {
-        user u = new user();
 
-        t1=a.getText().toString().trim();
-        t2=b.getText().toString().trim();
-        t3=c.getText().toString().trim();
-        t4=d.getText().toString().trim();
-        t5=e.getText().toString().trim();
-        t6=f.getText().toString().trim();
-        t7=g.getText().toString().trim();
-        t8=h.getText().toString().trim();
+        t1=a.getText().toString();
+        t2=b.getText().toString();
+        t3=c.getText().toString();
+        t4=d.getText().toString();
+        t5=e.getText().toString();
+        t6=f.getText().toString();
+        t7=g.getText().toString();
 
-        str1 = String.valueOf(s1.getSelectedItem());
-        str2 = String.valueOf(s2.getSelectedItem());
-
-        if(t1.matches("") || t2.matches("") || t3.matches("") || t4.matches("") || t5.matches("") || t6.matches("") || t7.matches("") || t8.matches(""))
+        if(t1.matches("") || t2.matches("") || t3.matches("") || t4.matches("") || t5.matches("") || t6.matches("") || t7.matches(""))
         {
             Toast.makeText(this, "Valores nulos", Toast.LENGTH_SHORT).show();
         }
         else
         {
-            u.setNome(t1);
-            u.setMail(t2);
-            u.setMorada(t3);
-            u.setData(Integer.valueOf(t4));
-            u.setNif(Integer.valueOf(t5));
-            u.setTelefone(Integer.valueOf(t6));
-            u.setPassword(t7);
-            u.setPassword2(t8);
-            u.setGen(str1);
-            u.setp(str2);
-
-
-            if (!(t7.equalsIgnoreCase(t8)))
+            if (!(t6.equalsIgnoreCase(t7)))
             {
+                f.setText("");
                 g.setText("");
-                h.setText("");
                 Toast.makeText(this, "As passwords não coexistem", Toast.LENGTH_SHORT).show();
+            }
+            else if(t6.length()<6)
+            {
+                f.setText("");
+                Toast.makeText(this, "A password tem de ter no mínimo 6 caracteres", Toast.LENGTH_SHORT).show();
             }
             else if(t7.length()<6)
             {
                 g.setText("");
                 Toast.makeText(this, "A password tem de ter no mínimo 6 caracteres", Toast.LENGTH_SHORT).show();
             }
-            else if(t8.length()<6)
-            {
-                h.setText("");
-                Toast.makeText(this, "A password tem de ter no mínimo 6 caracteres", Toast.LENGTH_SHORT).show();
-            }
             else
             {
-                sign.createUserWithEmailAndPassword(t2,t7).addOnCompleteListener(new OnCompleteListener<AuthResult>()
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                auth.createUserWithEmailAndPassword(t3,t6).addOnCompleteListener(new OnCompleteListener<AuthResult>()
                 {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task)
                     {
                         if (task.isSuccessful())
                         {
-                            Toast.makeText(conta.this, "Registo com sucesso", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),menu.class));
-                        }
-                        else
-                        {
-                            Toast.makeText(conta.this, "Erro"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                            FirebaseUser fu=auth.getCurrentUser();
+                            fu.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>()
+                            {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task)
+                                {
+                                    Resources res = getResources();
+                                    String [] txt = res.getStringArray(R.array.verif);
+                                    Toast.makeText(conta.this, ""+txt[6], Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener()
+                            {
+                                @Override
+                                public void onFailure(@NonNull Exception e)
+                                {
+                                    Toast.makeText(conta.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                            user user = new user(t1,t2,t3,t4,t5,t6,t7);
+                            FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getUid())
+                                    .setValue(user);
+
+                            Intent i= new Intent(conta.this, menu.class);
+                            startActivity(i);
                         }
                     }
+
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(conta.this, "Erro: "+e, Toast.LENGTH_SHORT).show();
+                    }
                 });
+
             }
+
         }
     }
 
@@ -143,7 +210,6 @@ public class conta extends AppCompatActivity {
         e.setText("");
         f.setText("");
         g.setText("");
-        h.setText("");
     }
 
     public void atras(View v)

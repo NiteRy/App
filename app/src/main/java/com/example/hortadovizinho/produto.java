@@ -1,45 +1,54 @@
 package com.example.hortadovizinho;
 
-public class produto {
-    private Integer id;
-    private String nome;
-    private String tipo;
-    private Integer quantidade;
-    private Float preco;
-    public Integer getId() {return id;}
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-    public void setId(Integer id) {this.id = id;}
+import com.bumptech.glide.Glide;
 
+public class produto extends BaseAdapter
+{
+    Context context;
+    String pr[],ft[];
+    LayoutInflater inflater;
 
-    public String getNome() {return nome;}
+    public produto(Context context,String[] pr,String[] ft)
+    {
+    this.context=context;
+    this.pr=pr;
+    this.ft=ft;
+    inflater=LayoutInflater.from(context);
 
-    public void setNome(String nome) {this.nome = nome;}
-
-
-    public String getTipo() {return tipo;}
-
-    public void setTipo(String tipo) {this.tipo = tipo;}
-
-
-    public Integer getQuantidade() {return quantidade;}
-
-    public void setQuantidade(Integer quantidade) {this.quantidade = quantidade;}
-
-
-    public Float getPreco() {return preco;}
-
-    public void setPreco(Float preco) {this.preco = preco;}
-
-    public produto(Integer id, String nome, String tipo, Integer quantidade, Float preco) {
-        this.id = id;
-        this.nome = nome;
-        this.tipo = tipo;
-        this.quantidade = quantidade;
-        this.preco = preco;
     }
 
     @Override
-    public String toString(){
-        return nome;
+    public int getCount() {
+        return pr.length;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        convertView=inflater.inflate(R.layout.activity_prod,null);
+        TextView textView=(TextView)convertView.findViewById(R.id.txtP);
+        ImageView imageView=(ImageView) convertView.findViewById(R.id.imgP);
+        textView.setText(pr[position]);
+        Glide.with(convertView).load(ft[position]).into(imageView);
+        return convertView;
     }
 }

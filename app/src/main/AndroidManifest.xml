@@ -2,7 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.hortadovizinho">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 
     <application
         android:allowBackup="true"
@@ -12,19 +17,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HortaDoVizinho">
         <activity
+            android:name=".insert"
+            android:exported="false" />
+        <activity
+            android:name=".prod"
+            android:exported="false" />
+        <activity
             android:name=".produtos"
             android:exported="false" />
         <activity
-            android:name=".lista"
-            android:exported="false" />
-        <activity
-            android:name=".carrinho"
-            android:exported="false" />
-        <activity
             android:name=".perfil"
-            android:exported="false" />
-        <activity
-            android:name=".catalogo"
             android:exported="false" />
         <activity
             android:name=".welcome"

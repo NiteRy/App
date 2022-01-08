@@ -7,27 +7,10 @@
     android:background="@color/background"
     tools:context=".conta">
 
-    <TextView
-        android:id="@+id/sup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="20dp"
-        android:text="Criar Conta"
-        android:textAlignment="center"
-        android:textSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="-100dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,6 +32,18 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/sup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="Criar Conta"
+                    android:textAlignment="center"
+                    android:textSize="40dp" />
+
                 <EditText
                     android:id="@+id/nome"
                     android:layout_width="300dp"
@@ -59,6 +54,18 @@
                     android:layout_marginBottom="5dp"
                     android:ems="10"
                     android:hint="Inserir Nome"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/apelido"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginBottom="5dp"
+                    android:ems="10"
+                    android:hint="Inserir Apelido"
                     android:inputType="textPersonName" />
 
                 <EditText
@@ -85,18 +92,8 @@
                     android:hint="Insira a sua morada"
                     android:inputType="textPersonName" />
 
-                <Spinner
-                    android:id="@+id/pais"
-                    android:layout_width="350dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="31dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="#44ff55" />
-
                 <EditText
-                    android:id="@+id/data"
+                    android:id="@+id/codP"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
@@ -104,42 +101,9 @@
                     android:layout_marginEnd="50dp"
                     android:layout_marginBottom="5dp"
                     android:ems="10"
-                    android:hint="Insira sua data de nascimento"
-                    android:inputType="date" />
-
-                <Spinner
-                    android:id="@+id/genero"
-                    android:layout_width="350dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="31dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="#44ff55" />
-
-                <EditText
-                    android:id="@+id/nif"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="5dp"
-                    android:ems="10"
-                    android:hint="Inseira o seu NIF"
-                    android:inputType="number" />
-
-                <EditText
-                    android:id="@+id/tel"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="5dp"
-                    android:ems="10"
-                    android:hint="Insira o seu Contacto"
-                    android:inputType="phone" />
+                    android:hint="Insira o seu Código Postal"
+                    android:inputType="number"
+                    android:maxLength="8" />
 
                 <EditText
                     android:id="@+id/pass"
@@ -197,11 +161,6 @@
                     android:layout_marginBottom="50dp"
                     android:onClick="atras"
                     android:text="Voltar atrás" />
-
-                <ListView
-                    android:id="@+id/caixa"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
 
             </LinearLayout>
         </ScrollView>
