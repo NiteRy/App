@@ -3,7 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/background"
     android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="177dp"
+        android:layout_marginBottom="10dp"
+        android:text="Carrinho"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/lis"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/comp"
@@ -22,23 +38,27 @@
     <ListView
         android:id="@+id/compra"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="19dp"
+        android:background="#7E009B24"
         app:layout_constraintBottom_toTopOf="@+id/comp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lis"></ListView>
+        app:layout_constraintTop_toBottomOf="@+id/lc"></ListView>
 
     <ListView
         android:id="@+id/lis"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/compra"
+        android:layout_height="200dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:background="#7E009B24"
+        app:layout_constraintBottom_toTopOf="@+id/lc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
     </ListView>
 
@@ -49,7 +69,7 @@
         android:layout_marginStart="132dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="133dp"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="10dp"
         android:onClick="tras"
         android:text="Voltar atrás"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,5 +91,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/comp" />
+
+    <TextView
+        android:id="@+id/lc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="179dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="174dp"
+        android:layout_marginBottom="1dp"
+        android:text="Lista de compras"
+        app:layout_constraintBottom_toTopOf="@+id/compra"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lis" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

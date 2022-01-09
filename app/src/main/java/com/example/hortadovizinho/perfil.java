@@ -302,6 +302,7 @@ public class perfil extends AppCompatActivity {
         }
         return super.onCreateOptionsMenu(menu);
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int i=item.getItemId();
@@ -328,5 +329,11 @@ public class perfil extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void tras(View view)
+    {
+        Intent i= new Intent(perfil.this, welcome.class);
+        startActivity(i);
     }
 }

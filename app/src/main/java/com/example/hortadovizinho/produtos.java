@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
@@ -21,7 +22,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -94,14 +98,14 @@ public class produtos extends AppCompatActivity
 
     ListView listView,txt;
 
-    String p,list;
+    String p,list="";
 
     int i,ad=0;
 
     float total,somatorio;
 
 
-    Button comp,clear;
+    Button comp,emite;
 
     ArrayList<String> arrayList;
 
@@ -111,6 +115,10 @@ public class produtos extends AppCompatActivity
 
     String fat;
 
+    public static final String SHARED_PREFS = "shared_prefs";
+
+    SharedPreferences sharedpreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,7 +127,11 @@ public class produtos extends AppCompatActivity
 
         txt=findViewById(R.id.compra);
         comp=findViewById(R.id.comp);
-        clear=findViewById(R.id.emite);
+        emite=findViewById(R.id.emite);
+
+        emite.setVisibility(View.GONE);
+        comp.setVisibility(View.GONE);
+
 
         if(!teste(this))
         {
@@ -160,8 +172,12 @@ public class produtos extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
                 p=snapshot.child(FirebaseAuth.getInstance().getUid()).child("nome").getValue(String.class);
-                if(p.equals("Nit"))
+                if(p.equals("Nite"))
                 {
+                    txt.setVisibility(View.GONE);
+                    TextView tes=findViewById(R.id.lc);
+                    tes.setText("Editar produtos");
+
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -196,6 +212,7 @@ public class produtos extends AppCompatActivity
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
                         {
 
+                            comp.setVisibility(View.VISIBLE);
                             Toast.makeText(produtos.this, "Adicionando "+name[position], Toast.LENGTH_SHORT).show();
                             ad++;
                             total=ad*Float.parseFloat(pri[position]);
@@ -205,12 +222,12 @@ public class produtos extends AppCompatActivity
                                 @Override
                                 public void onClick(View v)
                                 {
-
-                                    arrayList.add(""+list+"\n");
-                                    txt.setAdapter(arrayAdapter);
-                                    arrayAdapter.notifyDataSetChanged();
-                                    somatorio+=total;
-                                    ad=0;
+                                        arrayList.add(""+list+"\n");
+                                        txt.setAdapter(arrayAdapter);
+                                        arrayAdapter.notifyDataSetChanged();
+                                        somatorio+=total;
+                                        ad=0;
+                                        emite.setVisibility(View.VISIBLE);
                                 }
                             });
                         }
@@ -221,6 +238,9 @@ public class produtos extends AppCompatActivity
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             arrayList.remove(position);
                             arrayAdapter.notifyDataSetChanged();
+                            emite.setVisibility(View.GONE);
+                            comp.setVisibility(View.GONE);
+                            Toast.makeText(produtos.this, "A remover produto "+name[position], Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -231,6 +251,52 @@ public class produtos extends AppCompatActivity
 
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.barra,menu);
+
+        MenuItem item = menu.findItem(R.id.pro);
+
+        if (item.isVisible())
+        {
+            item.setVisible(false);
+
+        } else
+        {
+            Log.e(String.valueOf(this),"erro");
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int i=item.getItemId();
+        if(i==R.id.perfil)
+        {
+            Intent v= new Intent(produtos.this,perfil.class);
+            startActivity(v);
+
+        }
+        if(i==R.id.exit)
+        {
+
+            sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+
+            editor.clear();
+
+
+            editor.apply();
+
+            Intent inte = new Intent(produtos.this, menu.class);
+            startActivity(inte);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private boolean teste(produtos produtos)
@@ -368,55 +434,48 @@ public class produtos extends AppCompatActivity
 
     public void fatura(View view)
     {
-            FileOutputStream num=null;
-            try
-            {
-                num=openFileOutput(String.valueOf(numC),MODE_PRIVATE);
+
+            FileOutputStream num = null;
+            try {
+                num = openFileOutput(String.valueOf(numC), MODE_PRIVATE);
                 numC++;
-                String val= String.valueOf(numC);
+                String val = String.valueOf(numC);
                 num.write(val.getBytes());
-            }
-            catch (FileNotFoundException e)
-            {
+            } catch (FileNotFoundException e) {
                 e.printStackTrace();
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 e.printStackTrace();
-            }
-            finally
-            {
-                if(num!=null)
-                {
-                    try
-                    {
+            } finally {
+                if (num != null) {
+                    try {
                         num.close();
-                    }
-                    catch (IOException e)
-                    {
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             }
 
-            String no="Fatura de "+p+" ";
-            no=no+" "+numC+".txt";
-            Calendar calendar=Calendar.getInstance();
-            String data= DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
-            fat="Horta do vizinho\nData: "+data+"\nNome do cliente: "+p+"\nProdutos: "+arrayList.toString()+"\nTotal: "+somatorio+"€";
+            String no = "Fatura de " + p + " ";
+            no = no + " " + numC + ".txt";
+            Calendar calendar = Calendar.getInstance();
+            String data = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+            fat = "Horta do vizinho\nData: " + data + "\nNome do cliente: " + p + "\nProdutos: " + arrayList.toString() + "\nTotal: " + somatorio + "€";
 
-        Intent intent=new Intent(Intent.ACTION_CREATE_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TITLE,""+no);
+            Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TITLE, "" + no);
 
-        startActivityForResult(intent,1);
+            startActivityForResult(intent, 1);
 
 
             arrayList.removeAll(arrayList);
             arrayList.add("");
             txt.setAdapter(arrayAdapter);
-            somatorio=0;
+            somatorio = 0;
+            list="";
+            emite.setVisibility(View.GONE);
+            comp.setVisibility(View.GONE);
     }
 
     @Override
@@ -446,7 +505,7 @@ public class produtos extends AppCompatActivity
             }
             else
             {
-                Toast.makeText(this, "Erro", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "A cancelar", Toast.LENGTH_SHORT).show();
             }
         }
     }

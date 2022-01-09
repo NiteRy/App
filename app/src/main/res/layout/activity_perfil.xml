@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".perfil">
 
     <ScrollView
@@ -157,6 +158,12 @@
                 android:layout_height="wrap_content"
                 android:onClick="cancel"
                 android:text="Cancelar" />
+
+            <Button
+                android:id="@+id/back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Voltar atrás" />
 
         </LinearLayout>
     </ScrollView>
