@@ -1,6 +1,7 @@
 package com.example.hortadovizinho;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -51,6 +52,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -106,6 +108,8 @@ public class produtos extends AppCompatActivity
     ArrayAdapter arrayAdapter;
 
     int numC;
+
+    String fat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -395,46 +399,56 @@ public class produtos extends AppCompatActivity
                 }
             }
 
-            String str="Fatura de "+p+" ";
-            str=str+" "+numC+".txt";
+            String no="Fatura de "+p+" ";
+            no=no+" "+numC+".txt";
             Calendar calendar=Calendar.getInstance();
             String data= DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
-            FileOutputStream fos=null;
-            String fat;
             fat="Horta do vizinho\nData: "+data+"\nNome do cliente: "+p+"\nProdutos: "+arrayList.toString()+"\nTotal: "+somatorio+"€";
-            try
-            {
-                fos=openFileOutput(str,MODE_PRIVATE);
-                fos.write(fat.getBytes());
-                Toast.makeText(this, "Salvo em "+Environment.DIRECTORY_DOCUMENTS, Toast.LENGTH_SHORT).show();
-            }
-            catch (FileNotFoundException e)
-            {
-                e.printStackTrace();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-            finally
-            {
-                if(fos!=null)
-                {
-                    try
-                    {
-                        fos.close();
-                    }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
-                }
-            }
+
+        Intent intent=new Intent(Intent.ACTION_CREATE_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TITLE,""+no);
+
+        startActivityForResult(intent,1);
+
 
             arrayList.removeAll(arrayList);
             arrayList.add("");
             txt.setAdapter(arrayAdapter);
             somatorio=0;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1)
+        {
+            if(resultCode==RESULT_OK)
+            {
+                Uri uri=data.getData();
+                try
+                {
+                    OutputStream outputStream=getContentResolver().openOutputStream(uri);
+                    outputStream.write(fat.getBytes());
+                    outputStream.close();
+                    Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
+                }
+                catch (FileNotFoundException e)
+                {
+                    e.printStackTrace();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+
+            }
+            else
+            {
+                Toast.makeText(this, "Erro", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 }
