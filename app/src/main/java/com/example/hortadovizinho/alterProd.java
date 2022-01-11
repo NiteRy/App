@@ -9,61 +9,35 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.gson.JsonParser;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 
-public class prod extends AppCompatActivity {
+public class alterProd extends AppCompatActivity {
 
     EditText a,b,c,dd,e,f,g,h,i,j,k,l,m,n,o;
     TextView cod;
 
     String url = "https://j6ninhas.eu.pythonanywhere.com/api/produtos/";
 
-    String result="";
 
     String id="",no="",d="",u="",p="",pp="",df="",dl="",fo="",s="",cs="",t="",pu="",ca="",sc="",se="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pr);
+        setContentView(R.layout.alter_prod);
 
         a=findViewById(R.id.txt1);
         b=findViewById(R.id.txt2);
@@ -164,14 +138,14 @@ public class prod extends AppCompatActivity {
         {
             Resources res = getResources();
             String [] txt = res.getStringArray(R.array.con);
-            AlertDialog.Builder net=new AlertDialog.Builder(prod.this);
+            AlertDialog.Builder net=new AlertDialog.Builder(alterProd.this);
             net.setCancelable(false);
             net.setTitle(txt[0]);
             net.setPositiveButton(txt[1], new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which)
                 {
-                    startActivity(new Intent(getApplicationContext(),prod.class));
+                    startActivity(new Intent(getApplicationContext(),alterProd.class));
                 }
             });
             net.setNegativeButton(txt[2], new DialogInterface.OnClickListener()
@@ -179,14 +153,14 @@ public class prod extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which)
                 {
-                    prod.this.finishAffinity();
+                    alterProd.this.finishAffinity();
                 }
             });
             net.show();
         }
     }
 
-    private boolean teste(prod prod)
+    private boolean teste(alterProd prod)
     {
         ConnectivityManager connectivityManager= (ConnectivityManager) prod.getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -206,7 +180,7 @@ public class prod extends AppCompatActivity {
 
     public void back(View v)
     {
-        Intent i= new Intent(prod.this, welcome.class);
+        Intent i= new Intent(alterProd.this, welcome.class);
         startActivity(i);
     }
 }

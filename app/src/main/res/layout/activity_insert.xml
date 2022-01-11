@@ -36,6 +36,8 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/nome"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="20"
                     android:layout_width="match_parent"
                     android:hint="Nome"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -45,6 +47,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ednome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -53,6 +56,8 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/descricao"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="50"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -62,26 +67,27 @@
                     app:hintTextColor="@color/decoracao">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edescricao"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:hint="Unidade"
+                    android:id="@+id/unit"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Unidade"
                     android:textColorHint="@color/decoracao"
                     app:boxStrokeColor="@color/decoracao"
-                    app:hintTextColor="@color/decoracao"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+                    app:hintTextColor="@color/decoracao">
 
                     <AutoCompleteTextView
                         android:id="@+id/unidade"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none"
-                        />
+                        android:inputType="none" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -96,14 +102,17 @@
                     app:hintTextColor="@color/decoracao">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edpreco"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number"/>
+                        android:inputType="number" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/promo"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="5"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -113,6 +122,7 @@
                     app:hintTextColor="@color/decoracao">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edpromo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"/>
@@ -130,9 +140,11 @@
                     app:hintTextColor="@color/decoracao">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/pr"
+                        android:id="@+id/edt"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="date"
+                        android:maxLength="10" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -147,9 +159,11 @@
                     app:hintTextColor="@color/decoracao">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/pr2"
+                        android:id="@+id/edl"
+                        android:maxLength="10"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="date"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -164,25 +178,10 @@
                     app:hintTextColor="@color/decoracao">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edstock"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/foto"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Link da fotografia"
-                    android:textColorHint="@color/decoracao"
-                    app:boxStrokeColor="@color/decoracao"
-                    app:hintTextColor="@color/decoracao">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -197,73 +196,36 @@
                     app:hintTextColor="@color/decoracao">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edslug"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                    <CheckBox
-                        style="@style/Widget.App.CheckBox"
-                        android:id="@+id/pub"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Publicado"
-                        android:buttonTint="@color/decoracao"
-                        android:textColorHint="@color/decoracao" />
-
                 <com.google.android.material.textfield.TextInputLayout
-                    android:hint="Categoria"
+                    android:id="@+id/sec"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/decoracao"
-                    app:boxStrokeColor="@color/decoracao"
-                    app:hintTextColor="@color/decoracao"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/categoria"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:hint="Sub-Categoria"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/decoracao"
-                    app:boxStrokeColor="@color/decoracao"
-                    app:hintTextColor="@color/decoracao"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/subcat"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
                     android:hint="Secção"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:textColorHint="@color/decoracao"
                     app:boxStrokeColor="@color/decoracao"
-                    app:hintTextColor="@color/decoracao"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+                    app:hintTextColor="@color/decoracao">
 
                     <AutoCompleteTextView
                         android:id="@+id/seccao"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none"
-                        />
+                        android:inputType="none" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/fotografia"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border" />
 
                 <Button
                     android:id="@+id/btn"
@@ -286,6 +248,20 @@
                     android:layout_marginEnd="30dp"
                     android:layout_marginBottom="20dp"
                     android:text="Limpar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="300dp" />
+
+                <Button
+                    android:id="@+id/btn3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="170dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:onClick="tras"
+                    android:text="Voltar atrás"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="300dp" />

@@ -88,18 +88,10 @@ public class MainActivity extends AppCompatActivity {
 
         msg.setPositiveButton(""+txt[2], new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if(welcome.EMAIL_KEY!=null)
-                {
+            public void onClick(DialogInterface dialog, int which)
+            {
                     Intent i= new Intent(MainActivity.this, welcome.class);
                     startActivity(i);
-                }
-                else
-                {
-                    Intent i= new Intent(MainActivity.this, menu.class);
-                    startActivity(i);
-                }
-
             }
         });
         msg.setNegativeButton(""+txt[3], new DialogInterface.OnClickListener() {

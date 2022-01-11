@@ -43,7 +43,7 @@
         android:layout_marginEnd="159dp"
         android:layout_marginBottom="201dp"
         android:onClick="teste"
-        android:text="Inserir valor"
+        android:text="Inserir produto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -42,22 +42,11 @@
         <item>Frasco</item>
     </string-array>
 
-    <string-array name="categoria">
-        <item> </item>
-        <item>Frutos secos</item>
-        <item>Animal</item>
-        <item>Vegetal</item>
-    </string-array>
-
-    <string-array name="subcat">
-        <item> </item>
-    </string-array>
-
     <string-array name="seccao">
         <item> </item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
+        <item>Vegetal</item>
+        <item>Fruta</item>
+        <item>Mercenaria</item>
     </string-array>
 
 

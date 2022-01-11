@@ -33,51 +33,62 @@ public class welcome extends AppCompatActivity {
     public static final String EMAIL_KEY = "email_key";
     public static final String PASSWORD_KEY = "password_key";
 
-
     SharedPreferences sharedpreferences;
     String email,password;
 
     String p;
+
+    Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
+        btn=findViewById(R.id.insert);
+        btn.setVisibility(View.GONE);
+
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
         email = sharedpreferences.getString(EMAIL_KEY, null);
         password = sharedpreferences.getString(PASSWORD_KEY, null);
 
+        if(sharedpreferences==null)
+        {
+            Intent i= new Intent(welcome.this, menu.class);
+            startActivity(i);
+        }
+
         DatabaseReference reference= FirebaseDatabase.getInstance().getReference("users");
         Query check;
 
-        check=reference.orderByChild(FirebaseAuth.getInstance().getUid());
-
-
-        check.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot)
-            {
-                p=snapshot.child(FirebaseAuth.getInstance().getUid()).child("nome").getValue(String.class);
-                TextView welcomeTV = findViewById(R.id.welc);
-                welcomeTV.setText("Bem vindo " +p);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        Button btn=findViewById(R.id.insert);
-        btn.setVisibility(View.GONE);
-
-        if(email.equals("vmcccispcdapcgfpc@gmail.com"))
+        if(email==null)
         {
-            btn.setVisibility(View.VISIBLE);
+            Intent i= new Intent(welcome.this, menu.class);
+            startActivity(i);
         }
+        else {
 
+            check = reference.orderByChild(FirebaseAuth.getInstance().getUid());
+
+            check.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    p = snapshot.child(FirebaseAuth.getInstance().getUid()).child("nome").getValue(String.class);
+                    TextView welcomeTV = findViewById(R.id.welc);
+                    welcomeTV.setText("Bem vindo " + p);
+                    if (p.equals("Nite")) {
+                        btn.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        }
         if(!teste(this))
         {
             Resources res = getResources();
@@ -103,11 +114,6 @@ public class welcome extends AppCompatActivity {
             net.show();
         }
 
-        if(email==null)
-        {
-            Intent i= new Intent(welcome.this, menu.class);
-            startActivity(i);
-        }
 
     }
 
@@ -164,6 +170,7 @@ public class welcome extends AppCompatActivity {
             Intent inte = new Intent(welcome.this, menu.class);
             startActivity(inte);
             finish();
+
 
         }
         return super.onOptionsItemSelected(item);

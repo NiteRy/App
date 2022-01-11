@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/perfil"
-        android:icon="@drawable/pessoa"
-        android:title="Perfil"
-        tools:showAsAction="ifRoom" />
-    <item
         android:id="@+id/pro"
         android:icon="@drawable/cesto"
         android:title="Produtos"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/perfil"
+        android:icon="@drawable/pessoa"
+        android:title="Perfil"
+        tools:showAsAction="ifRoom" />
     <item
         android:id="@+id/exit"
         android:icon="@android:drawable/ic_lock_power_off"

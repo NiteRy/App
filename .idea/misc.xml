@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Death/OneDrive/Desktop/horta/app/src/main/res/drawable/border.xml" value="0.10092592592592593" />
         <entry key="..\:/Users/Death/OneDrive/Desktop/horta/app/src/main/res/layout/activity_car.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Death/OneDrive/Desktop/horta/app/src/main/res/layout/activity_carrinho.xml" value="0.33" />
         <entry key="..\:/Users/Death/OneDrive/Desktop/horta/app/src/main/res/layout/activity_catalogo.xml" value="0.5" />
@@ -17,7 +18,9 @@
         <entry key="..\:/Users/Death/OneDrive/Desktop/horta/app/src/main/res/layout/activity_produtos.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Death/OneDrive/Desktop/horta/app/src/main/res/layout/activity_welcome.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Death/OneDrive/Desktop/horta/app/src/main/res/layout/adapter_produtos.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Death/OneDrive/Desktop/horta/app/src/main/res/layout/alter_prod.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Death/OneDrive/Desktop/horta/app/src/main/res/layout/item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Death/OneDrive/Desktop/horta/app/src/main/res/layout/line_prod.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Death/OneDrive/Desktop/horta/app/src/main/res/layout/list_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Death/OneDrive/Desktop/horta/app/src/main/res/layout/pr.xml" value="0.3398148148148148" />
         <entry key="..\:/Users/Death/OneDrive/Desktop/horta/app/src/main/res/layout/prod.xml" value="0.36666666666666664" />
@@ -36,9 +39,13 @@
         <entry key="..\:/Users/cisco/Desktop/horta/app/src/main/res/layout/menu.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/cisco/Desktop/horta/app/src/main/res/menu/barra.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/cisco/Downloads/horta/app/src/main/res/layout/activity_conta.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/cisco/Downloads/horta/app/src/main/res/layout/activity_insert.xml" value="0.22989949748743718" />
         <entry key="..\:/Users/cisco/Downloads/horta/app/src/main/res/layout/activity_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/cisco/Downloads/horta/app/src/main/res/layout/activity_prod.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/cisco/Downloads/horta/app/src/main/res/layout/activity_produtos.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/cisco/Downloads/horta/app/src/main/res/layout/alterProd.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/cisco/Downloads/horta/app/src/main/res/layout/alter_prod.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/cisco/Downloads/horta/app/src/main/res/layout/pr.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/cisco/Downloads/horta/app/src/main/res/layout/prod.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/cisco/Downloads/horta/app/src/main/res/menu/barra.xml" value="0.36666666666666664" />
       </map>

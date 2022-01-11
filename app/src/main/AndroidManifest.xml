@@ -20,7 +20,7 @@
             android:name=".insert"
             android:exported="false" />
         <activity
-            android:name=".prod"
+            android:name=".alterProd"
             android:exported="false" />
         <activity
             android:name=".produtos"

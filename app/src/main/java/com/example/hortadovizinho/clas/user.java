@@ -1,4 +1,4 @@
-package com.example.hortadovizinho;
+package com.example.hortadovizinho.clas;
 
 public class user {
     private String nome;
