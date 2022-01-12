@@ -52,7 +52,7 @@ public class produtos extends AppCompatActivity implements RecycleViewInterface
 
     ListView txt;
 
-    String p,list="";
+    String p,list="",val;
 
     int ad=0;
 
@@ -78,6 +78,8 @@ public class produtos extends AppCompatActivity implements RecycleViewInterface
     DatabaseReference database;
     prodHolder myAdapter;
     ArrayList<Produto> lista;
+
+    String s="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -303,7 +305,7 @@ public class produtos extends AppCompatActivity implements RecycleViewInterface
         no = no + " " + numC + ".txt";
         Calendar calendar = Calendar.getInstance();
         String data = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
-        fat = "Horta do vizinho\nData: " + data + "\nNome do cliente: " + p + "\nProdutos: " + arrayList.toString() + "\nTotal: " + somatorio + "€";
+        fat = "Horta XPTO\nData: " + data + "\nNome do cliente: " + p + "\nProdutos: " + arrayList.toString() + "\nTotal: " + somatorio + "€";
 
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -359,6 +361,9 @@ public class produtos extends AppCompatActivity implements RecycleViewInterface
     {
 
         produto=lista.get(position);
+        s=produto.getSlug();
+
+        Log.e(String.valueOf(this),""+s);
 
         if(!p.equals("Nite"))
         {
@@ -370,7 +375,11 @@ public class produtos extends AppCompatActivity implements RecycleViewInterface
         }
         else
         {
-            Toast.makeText(this, ""+produto.getNome(), Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(produtos.this, ""+produto.getNome(), Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(produtos.this,alterProd.class);
+            intent.putExtra("slug",s);
+            startActivity(intent);
         }
 
     }

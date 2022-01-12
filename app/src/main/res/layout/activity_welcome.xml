@@ -8,7 +8,7 @@
     tools:context=".welcome">
 
     <TextView
-        android:id="@+id/welc"
+        android:id="@+id/alt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -28,7 +28,7 @@
         android:layout_marginStart="127dp"
         android:layout_marginEnd="127dp"
         android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/welc"
+        app:layout_constraintBottom_toTopOf="@+id/alt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -47,6 +47,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welc" />
+        app:layout_constraintTop_toBottomOf="@+id/alt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

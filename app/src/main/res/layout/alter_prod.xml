@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".insert">
 
     <LinearLayout
-        android:id="@+id/linha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-100dp"
-        android:layout_marginBottom="-100dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,13 +17,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ScrollView
-            android:id="@+id/scroll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="50dp"
-            android:fadeScrollbars="true"
-            android:isScrollContainer="true">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -32,221 +26,251 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/sid"
-                    android:layout_width="300dp"
+                    android:id="@+id/alt"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="100dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="10dp" />
+                    android:layout_marginTop="30dp"
+                    android:text="Alterar produto"
+                    android:textAlignment="center"
+                    android:textColor="@color/decoracao"
+                    android:textSize="30sp" />
 
-                <EditText
-                    android:id="@+id/txt1"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="100dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/anome"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="20"
+                    android:layout_width="match_parent"
+                    android:hint="Nome"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:textColorHint="@color/decoracao"
+                    app:hintTextColor="@color/decoracao"
+                    app:boxStrokeColor="@color/decoracao"
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/txt2"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/altnome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
 
-                <EditText
-                    android:id="@+id/txt3"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/txt4"
-                    android:layout_width="300dp"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/adescricao"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="50"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                    android:hint="Descrição"
+                    android:textColorHint="@color/decoracao"
+                    app:boxStrokeColor="@color/decoracao"
+                    app:hintTextColor="@color/decoracao">
 
-                <EditText
-                    android:id="@+id/txt5"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/altescricao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                <EditText
-                    android:id="@+id/txt6"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/txt7"
-                    android:layout_width="300dp"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/aunit"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                    android:hint="Unidade"
+                    android:textColorHint="@color/decoracao"
+                    app:boxStrokeColor="@color/decoracao"
+                    app:hintTextColor="@color/decoracao">
 
-                <EditText
-                    android:id="@+id/txt8"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                    <AutoCompleteTextView
+                        android:id="@+id/altunidade"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none" />
 
-                <EditText
-                    android:id="@+id/txt9"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/txt10"
-                    android:layout_width="300dp"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/apreco"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                    android:hint="Preço"
+                    android:textColorHint="@color/decoracao"
+                    app:boxStrokeColor="@color/decoracao"
+                    app:hintTextColor="@color/decoracao">
 
-                <EditText
-                    android:id="@+id/txt11"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/altpreco"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
 
-                <EditText
-                    android:id="@+id/txt12"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/txt13"
-                    android:layout_width="300dp"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/apromo"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                    android:hint="Preço da promoção"
+                    android:textColorHint="@color/decoracao"
+                    app:boxStrokeColor="@color/decoracao"
+                    app:hintTextColor="@color/decoracao">
 
-                <EditText
-                    android:id="@+id/txt14"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/altpromo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
 
-                <EditText
-                    android:id="@+id/txt15"
-                    android:layout_width="300dp"
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/adataFixado"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                    android:hint="Data da promoção fixado"
+                    android:textColorHint="@android:color/transparent"
+                    app:boxStrokeColor="@color/decoracao"
+                    app:hintTextColor="@color/decoracao">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/altdataFix"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Clique 2 vezes para adicionar uma data Fixada"
+                        android:inputType="date"
+                        android:maxLength="10"
+                        android:textColorHint="@color/decoracao" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/adataLimite"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Data da promoção limite"
+                    android:textColorHint="@android:color/transparent"
+                    app:boxStrokeColor="@color/decoracao"
+                    app:hintTextColor="@color/decoracao">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/altdataLim"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Clique 2 vezes para adicionar uma data Limite"
+                        android:inputType="date"
+                        android:maxLength="10"
+                        android:textColorHint="@color/decoracao" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/astock"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Stock"
+                    android:textColorHint="@color/decoracao"
+                    app:boxStrokeColor="@color/decoracao"
+                    app:hintTextColor="@color/decoracao">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/altstock"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/aslug"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="10"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Campo slug"
+                    android:textColorHint="@color/decoracao"
+                    app:boxStrokeColor="@color/decoracao"
+                    app:hintTextColor="@color/decoracao">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/altslug"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/asec"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Secção"
+                    android:textColorHint="@color/decoracao"
+                    app:boxStrokeColor="@color/decoracao"
+                    app:hintTextColor="@color/decoracao">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/altseccao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/altfotografia"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border" />
 
                 <Button
-                    android:id="@+id/atras"
-                    android:layout_width="150dp"
+                    android:id="@+id/altProd"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="150dp"
                     android:layout_marginTop="50dp"
-                    android:layout_marginEnd="150dp"
-                    android:layout_marginBottom="50dp"
-                    android:onClick="back"
-                    android:text="Voltar atrás" />
+                    android:layout_marginBottom="20dp"
+                    android:text="Confirmar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="300dp" />
 
                 <Button
-                    android:id="@+id/conf"
+                    android:id="@+id/Del"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="150dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="200dp"
-                    android:layout_marginBottom="100dp"
-                    android:text="confirmar" />
+                    android:layout_marginLeft="137dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="Eliminar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="300dp" />
 
-                <!--text view to display our
-                    response after updating data-->
+                <Button
+                    android:id="@+id/volt"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="137dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="20dp"
+                    android:onClick="tras"
+                    android:text="Voltar atrás"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="300dp" />
 
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

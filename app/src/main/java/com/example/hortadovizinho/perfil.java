@@ -131,6 +131,7 @@ public class perfil extends AppCompatActivity {
                 c=snapshot.child(FirebaseAuth.getInstance().getUid()).child("mail").getValue(String.class);
                 d=snapshot.child(FirebaseAuth.getInstance().getUid()).child("codP").getValue(String.class);
 
+
                 name.setText("Nome de utilizador: "+a);
                 apelido.setText("apelido de utilizador: "+b);
                 mail.setText("Email de utilizador: "+c);

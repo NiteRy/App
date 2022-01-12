@@ -26,7 +26,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/welc"
+                    android:id="@+id/ins"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
@@ -111,8 +111,6 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/promo"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="5"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -125,7 +123,7 @@
                         android:id="@+id/edpromo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number"/>
+                        android:inputType="number" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -134,8 +132,8 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Preço da promoção fixado"
-                    android:textColorHint="@color/decoracao"
+                    android:hint="Data da promoção fixado"
+                    android:textColorHint="@android:color/transparent"
                     app:boxStrokeColor="@color/decoracao"
                     app:hintTextColor="@color/decoracao">
 
@@ -143,8 +141,10 @@
                         android:id="@+id/edt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="Clique 2 vezes para adicionar uma data Fixada"
                         android:inputType="date"
-                        android:maxLength="10" />
+                        android:maxLength="10"
+                        android:textColorHint="@color/decoracao" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -153,17 +153,19 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Preço da promoção limite"
-                    android:textColorHint="@color/decoracao"
+                    android:hint="Data da promoção limite"
+                    android:textColorHint="@android:color/transparent"
                     app:boxStrokeColor="@color/decoracao"
                     app:hintTextColor="@color/decoracao">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edl"
-                        android:maxLength="10"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="date"/>
+                        android:hint="Clique 2 vezes para adicionar uma data Limite"
+                        android:inputType="date"
+                        android:maxLength="10"
+                        android:textColorHint="@color/decoracao" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -187,6 +189,8 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/slug"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="10"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -241,11 +245,10 @@
 
                 <Button
                     android:id="@+id/btn2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="170dp"
+                    android:layout_marginLeft="137dp"
                     android:layout_marginTop="50dp"
-                    android:layout_marginEnd="30dp"
                     android:layout_marginBottom="20dp"
                     android:text="Limpar"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -254,11 +257,10 @@
 
                 <Button
                     android:id="@+id/btn3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="170dp"
+                    android:layout_marginStart="137dp"
                     android:layout_marginTop="50dp"
-                    android:layout_marginEnd="30dp"
                     android:layout_marginBottom="20dp"
                     android:onClick="tras"
                     android:text="Voltar atrás"

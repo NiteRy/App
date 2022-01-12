@@ -13,6 +13,8 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -33,6 +35,10 @@ public class conta extends AppCompatActivity {
     String t1,t2,t3,t4,t5,t6,t7;
 
 
+    String mTextValue;
+    Character mLastChar = '\0'; // init with empty character
+    int mKeyDel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,20 +54,65 @@ public class conta extends AppCompatActivity {
 
         e.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if(e.length()==4){
-                    e.append("-");
+            public void beforeTextChanged(CharSequence s, int start, int count, int after)
+            {
+                if (s.length()>0) {// save the last char value
+                    mLastChar = s.charAt(s.length() - 1);
+                } else {
+                    mLastChar = '\0';
                 }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+                boolean flag = true;
+                String eachBlock[] = e.getText().toString().split("-");
+                for (int i = 0; i < eachBlock.length; i++) {
+                    if (eachBlock[i].length() > 4) {
+                        flag = false;
+                    }
+                }
+                if (flag) {
+
+                    e.setOnKeyListener(new View.OnKeyListener() {
+
+                        @Override
+                        public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                            if (keyCode == KeyEvent.KEYCODE_DEL)
+                                mKeyDel = 1;
+                            return false;
+                        }
+                    });
+
+                    if (mKeyDel == 0) {
+
+                        if (e.getText().length() == 4) {
+                            e.setText(e.getText() + "-");
+                            e.setSelection(e.getText().length());
+                        }
+                        mTextValue = e.getText().toString();
+                    } else {
+                        mTextValue = e.getText().toString();
+                        if (mLastChar.equals('-')) {
+                            mTextValue = mTextValue.substring(0, mTextValue.length() - 1);
+                            e.setText(mTextValue);
+                            e.setSelection(mTextValue.length());
+                        }
+                        mKeyDel = 0;
+                    }
+
+                } else {
+                    e.setText(mTextValue);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s)
+            {
+
             }
         });
 

@@ -12,7 +12,6 @@ import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -75,7 +74,7 @@ public class welcome extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     p = snapshot.child(FirebaseAuth.getInstance().getUid()).child("nome").getValue(String.class);
-                    TextView welcomeTV = findViewById(R.id.welc);
+                    TextView welcomeTV = findViewById(R.id.alt);
                     welcomeTV.setText("Bem vindo " + p);
                     if (p.equals("Nite")) {
                         btn.setVisibility(View.VISIBLE);

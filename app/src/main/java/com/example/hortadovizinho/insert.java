@@ -52,7 +52,7 @@ public class insert extends AppCompatActivity {
 
     Button btn1,btn2;
 
-    TextInputLayout t1,t2,t3,t4,t5,t6,t7,t8,unit,sec;
+    TextInputLayout inome,idesc,ipreco,ipromo,idataFix,idataLim,istock,islug,unit,sec;
 
     String s1,s4;
 
@@ -88,13 +88,16 @@ public class insert extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert);
 
-        t1=findViewById(R.id.nome);
-        t2=findViewById(R.id.descricao);
-        t3=findViewById(R.id.preco);
-        t4=findViewById(R.id.promo);
+        inome=findViewById(R.id.nome);
+        idesc=findViewById(R.id.descricao);
+        ipreco=findViewById(R.id.preco);
+        ipromo=findViewById(R.id.promo);
 
         unit=findViewById(R.id.unit);
         sec=findViewById(R.id.sec);
+
+        fotografia=findViewById(R.id.fotografia);
+        fotografia.setVisibility(View.GONE);
 
         Calendar calendar=Calendar.getInstance();
         final int year=calendar.get(Calendar.YEAR);
@@ -104,8 +107,8 @@ public class insert extends AppCompatActivity {
         txt=findViewById(R.id.edt);
         txt2=findViewById(R.id.edl);
 
-        t5=findViewById(R.id.dataFixado);
-        t5.setOnClickListener(new View.OnClickListener() {
+        idataFix=findViewById(R.id.dataFixado);
+        idataFix.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
@@ -119,7 +122,7 @@ public class insert extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month+=1;
                 String date=day+"-"+month+"-"+year;
-                t5.getEditText().setText(date);
+                idataFix.getEditText().setText(date);
             }
         };
         txt.setOnClickListener(new View.OnClickListener() {
@@ -133,15 +136,15 @@ public class insert extends AppCompatActivity {
                     {
                         month+=1;
                         String date=day+"-"+month+"-"+year;
-                        t5.getEditText().setText(date);
+                        idataFix.getEditText().setText(date);
                     }
                 },year,month,day);
                 datePickerDialog.show();
             }
         });
 
-        t6=findViewById(R.id.dataLimite);
-        t6.setOnClickListener(new View.OnClickListener() {
+        idataLim=findViewById(R.id.dataLimite);
+        idataLim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
@@ -155,7 +158,7 @@ public class insert extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month+=1;
                 String date=day+"-"+month+"-"+year;
-                t6.getEditText().setText(date);
+                idataLim.getEditText().setText(date);
             }
         };
         txt2.setOnClickListener(new View.OnClickListener() {
@@ -169,16 +172,16 @@ public class insert extends AppCompatActivity {
                     {
                         month+=1;
                         String date=day+"-"+month+"-"+year;
-                        t6.getEditText().setText(date);
+                        idataLim.getEditText().setText(date);
                     }
                 },year,month,day);
                 datePickerDialog.show();
             }
         });
 
-        t7=findViewById(R.id.stock);
+        istock=findViewById(R.id.stock);
 
-        t8=findViewById(R.id.slug);
+        islug=findViewById(R.id.slug);
 
         firebaseStorage=FirebaseStorage.getInstance();
         storageReference=firebaseStorage.getReference("images");
@@ -211,7 +214,7 @@ public class insert extends AppCompatActivity {
         ednome=findViewById(R.id.ednome);
         edd=findViewById(R.id.edescricao);
         edst=findViewById(R.id.edstock);
-        edsl=findViewById(R.id.edstock);
+        edsl=findViewById(R.id.edslug);
         edpre=findViewById(R.id.edpreco);
         edpro=findViewById(R.id.edpromo);
 
@@ -219,15 +222,16 @@ public class insert extends AppCompatActivity {
 
         btn2=findViewById(R.id.btn2);
 
-        t2.setVisibility(View.GONE);
-        t3.setVisibility(View.GONE);
-        t4.setVisibility(View.GONE);
-        t5.setVisibility(View.GONE);
-        t6.setVisibility(View.GONE);
-        t7.setVisibility(View.GONE);
-        t8.setVisibility(View.GONE);
+        idesc.setVisibility(View.GONE);
         unit.setVisibility(View.GONE);
+        ipreco.setVisibility(View.GONE);
+        ipromo.setVisibility(View.GONE);
+        idataFix.setVisibility(View.GONE);
+        idataLim.setVisibility(View.GONE);
+        istock.setVisibility(View.GONE);
+        islug.setVisibility(View.GONE);
         sec.setVisibility(View.GONE);
+
         btn1.setVisibility(View.GONE);
 
 
@@ -243,12 +247,12 @@ public class insert extends AppCompatActivity {
             {
                 if (s.length() >=3 )
                 {
-                    t2.setVisibility(View.VISIBLE);
+                    idesc.setVisibility(View.VISIBLE);
                 }
 
                 else
                 {
-                    t2.setVisibility(View.GONE);
+                    idesc.setVisibility(View.GONE);
                 }
 
             }
@@ -256,15 +260,15 @@ public class insert extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-                if (s.length() > t1.getCounterMaxLength())
+                if (s.length() > inome.getCounterMaxLength())
                 {
-                    t1.setError("Tamanho máximo: " + t1.getCounterMaxLength());
-                    t2.setVisibility(View.GONE);
+                    inome.setError("Tamanho máximo: " + inome.getCounterMaxLength());
+                    idesc.setVisibility(View.GONE);
                 }
 
                 else
                 {
-                    t1.setError(null);
+                    inome.setError(null);
                 }
             }
         });
@@ -278,7 +282,7 @@ public class insert extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
-                if (s.length() >=20)
+                if (s.length() >=10)
                 {
                     unit.setVisibility(View.VISIBLE);
                 }
@@ -293,15 +297,15 @@ public class insert extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-                if (s.length() > t2.getCounterMaxLength())
+                if (s.length() > idesc.getCounterMaxLength())
                 {
-                    t2.setError("Tamanho máximo: " + t2.getCounterMaxLength());
+                    idesc.setError("Tamanho máximo: " + idesc.getCounterMaxLength());
                     unit.setVisibility(View.GONE);
                 }
 
                 else
                 {
-                    t2.setError(null);
+                    idesc.setError(null);
                 }
             }
         });
@@ -318,12 +322,12 @@ public class insert extends AppCompatActivity {
             {
                 if (s.length() >1)
                 {
-                    t3.setVisibility(View.VISIBLE);
+                    ipreco.setVisibility(View.VISIBLE);
                 }
 
                 else
                 {
-                    t3.setVisibility(View.GONE);
+                    ipreco.setVisibility(View.GONE);
                 }
             }
 
@@ -332,76 +336,134 @@ public class insert extends AppCompatActivity {
             {
                 if (s.length() < 1)
                 {
-                    t3.setVisibility(View.GONE);
+                    ipreco.setVisibility(View.GONE);
                 }
             }
         });
 
         edpre.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after)
+            {
 
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+                if (s.length() >0)
+                {
+                    ipromo.setVisibility(View.VISIBLE);
+                }
 
+                else
+                {
+                    ipromo.setVisibility(View.GONE);
+                }
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-
+            public void afterTextChanged(Editable s)
+            {
+                if (s.length() < 0)
+                {
+                    ipromo.setVisibility(View.GONE);
+                }
             }
         });
 
-        edpro.addTextChangedListener(new TextWatcher() {
+        edpro.addTextChangedListener(new TextWatcher()
+        {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after)
+            {
 
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+                if (s.length() >0)
+                {
+                    idataFix.setVisibility(View.VISIBLE);
+                }
 
+                else
+                {
+                    idataFix.setVisibility(View.GONE);
+                }
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-
+            public void afterTextChanged(Editable s)
+            {
+                if (s.length() <0)
+                {
+                    idataFix.setVisibility(View.GONE);
+                }
             }
         });
 
-        txt.addTextChangedListener(new TextWatcher() {
+
+        txt.addTextChangedListener(new TextWatcher()
+        {
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        public void beforeTextChanged(CharSequence s, int start, int count, int after)
+        {
 
         }
 
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+                if (s.length() >=8)
+                {
+                    idataLim.setVisibility(View.VISIBLE);
+                }
 
-        }
+                else
+                {
+                    idataLim.setVisibility(View.GONE);
+                }
+            }
 
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
+            @Override
+            public void afterTextChanged(Editable s)
+            {
+                if (s.length() <=8)
+                {
+                    idataLim.setVisibility(View.GONE);
+                }
+            }
     });
         txt2.addTextChangedListener(new TextWatcher() {
         @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        public void beforeTextChanged(CharSequence s, int start, int count, int after)
+        {
 
         }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+                if (s.length() >=8)
+                {
+                    istock.setVisibility(View.VISIBLE);
+                }
 
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
+                else
+                {
+                    istock.setVisibility(View.GONE);
+                }
+            }
 
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
+            @Override
+            public void afterTextChanged(Editable s)
+            {
+                if (s.length() <=8)
+                {
+                    istock.setVisibility(View.GONE);
+                }
+            }
     });
 
         edst.addTextChangedListener(new TextWatcher() {
@@ -413,30 +475,23 @@ public class insert extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
-                if (s.length() >=20)
+                if (s.length() >0)
                 {
-                    t3.setVisibility(View.VISIBLE);
+                    islug.setVisibility(View.VISIBLE);
                 }
 
                 else
                 {
-                    t3.setVisibility(View.GONE);
+                    islug.setVisibility(View.GONE);
                 }
-
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-
-                if (s.length() > t2.getCounterMaxLength())
+            public void afterTextChanged(Editable s)
+            {
+                if (s.length() <0)
                 {
-                    t2.setError("Tamanho máximo: " + t2.getCounterMaxLength());
-                    t3.setVisibility(View.GONE);
-                }
-
-                else
-                {
-                    t2.setError(null);
+                    islug.setVisibility(View.GONE);
                 }
             }
         });
@@ -448,13 +503,33 @@ public class insert extends AppCompatActivity {
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+                if (s.length() >=5)
+                {
+                    sec.setVisibility(View.VISIBLE);
+                }
+
+                else
+                {
+                    sec.setVisibility(View.GONE);
+                }
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
+                if (s.length() > islug.getCounterMaxLength())
+                {
+                    islug.setError("Tamanho máximo: " + islug.getCounterMaxLength());
+                    sec.setVisibility(View.GONE);
+                }
+
+                else
+                {
+                    islug.setError(null);
+                }
             }
         });
 
@@ -465,13 +540,26 @@ public class insert extends AppCompatActivity {
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+                if (s.length() >1)
+                {
+                    btn1.setVisibility(View.VISIBLE);
+                }
 
+                else
+                {
+                    btn1.setVisibility(View.GONE);
+                }
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-
+            public void afterTextChanged(Editable s)
+            {
+                if (s.length() < 1)
+                {
+                    btn1.setVisibility(View.GONE);
+                }
             }
         });
 
@@ -520,7 +608,6 @@ public class insert extends AppCompatActivity {
             @Override
             public void onActivityResult(Uri result)
             {
-                fotografia=findViewById(R.id.fotografia);
                 fotografia.setImageURI(result);
                 final ProgressDialog pd=new ProgressDialog(insert.this);
                 pd.setTitle("A atualizar");
@@ -601,43 +688,46 @@ public class insert extends AppCompatActivity {
 
     private void clean()
     {
-        t1.getEditText().setText("");
-        t2.getEditText().setText("");
-        t3.getEditText().setText("");
-        t4.getEditText().setText("");
-        t5.getEditText().setText("");
-        t6.getEditText().setText("");
-        t7.getEditText().setText("");
-        t8.getEditText().setText("");
+        inome.getEditText().setText("");
+        idesc.getEditText().setText("");
+        ipreco.getEditText().setText("");
+        ipromo.getEditText().setText("");
+        idataFix.getEditText().setText("");
+        idataLim.getEditText().setText("");
+        istock.getEditText().setText("");
+        islug.getEditText().setText("");
         c1.setText("");
         c2.setText("");
     }
     private void btnClick()
     {
 
-        nome=t1.getEditText().getText().toString();
-        descricao=t2.getEditText().getText().toString();
-        preco= Float.parseFloat(t3.getEditText().getText().toString());
-        promo= Float.parseFloat(t4.getEditText().getText().toString());
-        datafixado=t5.getEditText().getText().toString();
-        datalimite=t6.getEditText().getText().toString();
-        stock=Integer.parseInt(t7.getEditText().getText().toString());
-        slug=t8.getEditText().getText().toString();
+        fotografia.setVisibility(View.VISIBLE);
+
+        nome=inome.getEditText().getText().toString();
+        descricao=idesc.getEditText().getText().toString();
+        preco= Float.parseFloat(ipreco.getEditText().getText().toString());
+        promo= Float.parseFloat(ipromo.getEditText().getText().toString());
+        datafixado=idataFix.getEditText().getText().toString();
+        datalimite=idataLim.getEditText().getText().toString();
+        stock=Integer.parseInt(istock.getEditText().getText().toString());
+        slug=islug.getEditText().getText().toString();
 
         mGetContent.launch("image/*");
 
         data = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
 
-        t1.getEditText().setText("");
-        t2.getEditText().setText("");
-        t3.getEditText().setText("");
-        t4.getEditText().setText("");
-        t5.getEditText().setText("");
-        t6.getEditText().setText("");
-        t7.getEditText().setText("");
-        t8.getEditText().setText("");
+        inome.getEditText().setText("");
+        idesc.getEditText().setText("");
+        ipreco.getEditText().setText("");
+        ipromo.getEditText().setText("");
+        idataFix.getEditText().setText("");
+        idataLim.getEditText().setText("");
+        istock.getEditText().setText("");
+        islug.getEditText().setText("");
         c1.setText("");
         c2.setText("");
+        fotografia.setVisibility(View.GONE);
 
         Toast.makeText(this, "Registo criado", Toast.LENGTH_SHORT).show();
 

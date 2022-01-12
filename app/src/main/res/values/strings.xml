@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Horta do vizinho</string>
+    <string name="app_name">Horta XPTO</string>
     <string name="criar_conta">Criar Conta</string>
     <string name="fazer_login">Iniciar Sessão</string>
     <string name="sair">Sair</string>
-    <string name="horta_do_vizinho">Horta do vizinho</string>
+    <string name="horta_do_vizinho">Horta XPTO</string>
 
     <string-array name="ver">
         <item>Verificação de Idade</item>
