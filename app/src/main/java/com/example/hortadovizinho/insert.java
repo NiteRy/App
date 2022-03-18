@@ -646,6 +646,8 @@ public class insert extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e)
                     {
                         pd.dismiss();
+                        Intent i= new Intent(insert.this, welcome.class);
+                        startActivity(i);
                         Toast.makeText(getApplicationContext(), "Erro ao inserir a imagem", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -664,7 +666,14 @@ public class insert extends AppCompatActivity {
 
         ContentResolver contentResolver = getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri)) ;
+        if(contentResolver.getType(uri).equals(""))
+        {
+            return mimeTypeMap.getExtensionFromMimeType("") ;
+        }
+        else
+        {
+            return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri)) ;
+        }
 
     }
 

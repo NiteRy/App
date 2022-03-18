@@ -42,6 +42,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.FirebaseError;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -49,6 +50,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.ktx.Firebase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -71,7 +73,7 @@ public class alterProd extends AppCompatActivity {
 
     TextInputLayout anome,adesc,aunit,apreco,apromo,adataFix,adataLim,astock,aslug,asec;
 
-    String nome="",descricao="",uni="",datafixado="",datalimite="",foto="",slug="",sec="";
+    String nome="",descricao="",uni="",datafixado="",datalimite="",foto="",slug="",sec="",sub="";
 
     TextInputEditText altDataFix,altDataLim,altnome,altdesc,altpreco,altpromo,altstock,altslug;
 
@@ -116,7 +118,6 @@ public class alterProd extends AppCompatActivity {
         aslug=findViewById(R.id.aslug);
 
         fotografia=findViewById(R.id.altfotografia);
-        fotografia.setVisibility(View.GONE);
 
         Calendar calendar=Calendar.getInstance();
         final int year=calendar.get(Calendar.YEAR);
@@ -218,8 +219,6 @@ public class alterProd extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 String d=snapshot.child(slug).child("seccao").getValue(String.class);
-                Log.e(String.valueOf(this),"Sec: "+d);
-                Log.e(String.valueOf(this),"Foto: "+foto);
 
                 nome=snapshot.child(slug).child("nome").getValue(String.class);
                 descricao=snapshot.child(slug).child("descricao").getValue(String.class);
@@ -237,7 +236,6 @@ public class alterProd extends AppCompatActivity {
 
                 anome.getEditText().setText(nome);
                 adesc.getEditText().setText(descricao);
-                aunit.getEditText().setText(uni);
                 apreco.getEditText().setText(""+preco);
                 apromo.getEditText().setText(""+promo);
                 adataFix.getEditText().setText(datafixado);
@@ -251,22 +249,6 @@ public class alterProd extends AppCompatActivity {
 
             }
         });
-
-
-        DatabaseReference mReferencePlaca = FirebaseDatabase.getInstance().getReference();
-        mReferencePlaca.child("produtos").child(slug).child("seccao")
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        sec = dataSnapshot.getValue(String.class);
-                        asec.getEditText().setText(sec);
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
 
 
 
@@ -305,17 +287,6 @@ public class alterProd extends AppCompatActivity {
 
         btn2=findViewById(R.id.Del);
 
-        adesc.setVisibility(View.GONE);
-        aunit.setVisibility(View.GONE);
-        apreco.setVisibility(View.GONE);
-        apromo.setVisibility(View.GONE);
-        adataFix.setVisibility(View.GONE);
-        adataLim.setVisibility(View.GONE);
-        astock.setVisibility(View.GONE);
-        aslug.setVisibility(View.GONE);
-        asec.setVisibility(View.GONE);
-
-        btn1.setVisibility(View.GONE);
 
 
 
@@ -625,7 +596,7 @@ public class alterProd extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
-                if (s.length() >1)
+                if (s.length() >0)
                 {
                     btn1.setVisibility(View.VISIBLE);
                 }
@@ -639,7 +610,7 @@ public class alterProd extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s)
             {
-                if (s.length() < 1)
+                if (s.length() <0)
                 {
                     btn1.setVisibility(View.GONE);
                 }
@@ -701,6 +672,8 @@ public class alterProd extends AppCompatActivity {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                 pd.dismiss();
+                                Log.e(String.valueOf(this),""+sub);
+                                Log.e(String.valueOf(this),""+slug);
                                 Task<Uri> u=taskSnapshot.getStorage().getDownloadUrl();
                                 u.addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
@@ -723,12 +696,35 @@ public class alterProd extends AppCompatActivity {
                                         db.child(slug).setValue(imageProdutoInfo);
                                     }
                                 });
+
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+                                Query applesQuery = ref.child("produtos").orderByChild("slug").equalTo(sub);
+
+                                applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        for (DataSnapshot appleSnapshot: dataSnapshot.getChildren())
+                                        {
+                                            appleSnapshot.getRef().removeValue();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+                                    }
+                                });
+
+                                Intent i= new Intent(alterProd.this, welcome.class);
+                                startActivity(i);
                             }
+
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e)
                     {
                         pd.dismiss();
+                        Intent i= new Intent(alterProd.this, welcome.class);
+                        startActivity(i);
                         Toast.makeText(getApplicationContext(), "Erro ao inserir a imagem", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -741,13 +737,22 @@ public class alterProd extends AppCompatActivity {
             }
 
         });
+
+        sub=aslug.getEditText().getText().toString();
     }
 
     public String GetFileExtension(Uri uri) {
 
         ContentResolver contentResolver = getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri)) ;
+        if(contentResolver.getType(uri).equals(""))
+        {
+            return mimeTypeMap.getExtensionFromMimeType("") ;
+        }
+        else
+        {
+            return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri)) ;
+        }
 
     }
 
@@ -774,7 +779,6 @@ public class alterProd extends AppCompatActivity {
 
         DatabaseReference del=FirebaseDatabase.getInstance().getReference("produtos").child(slug);
         del.removeValue();
-
         Toast.makeText(alterProd.this, "Registo eliminado", Toast.LENGTH_SHORT).show();
         Intent i= new Intent(alterProd.this, welcome.class);
         startActivity(i);
@@ -810,7 +814,8 @@ public class alterProd extends AppCompatActivity {
         altsel.setText("");
         fotografia.setVisibility(View.GONE);
 
-        Toast.makeText(this, "Registo criado", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Registo alterado", Toast.LENGTH_SHORT).show();
+
 
     }
     public void tras(View view)

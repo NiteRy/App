@@ -114,7 +114,7 @@ public class login extends AppCompatActivity {
     public void login(View v)
     {
 
-        if (TextUtils.isEmpty(user.getEditText().getText().toString()) && TextUtils.isEmpty(pass.getEditText().getText().toString()))
+        if (TextUtils.isEmpty(user.getEditText().getText().toString()) || TextUtils.isEmpty(pass.getEditText().getText().toString()))
         {
             Toast.makeText(login.this, "Please Enter Email and Password", Toast.LENGTH_SHORT).show();
         }

@@ -12,6 +12,7 @@ import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -73,6 +74,12 @@ public class welcome extends AppCompatActivity {
             check.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    if(!password.equals(snapshot.child(FirebaseAuth.getInstance().getUid()).child("password").getValue(String.class)))
+                    {
+                        reference.child(FirebaseAuth.getInstance().getUid()).child("password").setValue(password);
+                        reference.child(FirebaseAuth.getInstance().getUid()).child("password2").setValue(password);
+                    }
                     p = snapshot.child(FirebaseAuth.getInstance().getUid()).child("nome").getValue(String.class);
                     TextView welcomeTV = findViewById(R.id.alt);
                     welcomeTV.setText("Bem vindo " + p);

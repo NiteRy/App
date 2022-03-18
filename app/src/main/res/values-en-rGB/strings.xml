@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Neighbour\'s vegetables garden</string>
+    <string name="app_name">XPTO vegetables garden</string>
     <string name="criar_conta">Create Account</string>
     <string name="fazer_login">Login</string>
     <string name="sair">Exit</string>
-    <string name="horta_do_vizinho">Neighbour\'s vegetables garden</string>
+    <string name="horta_do_vizinho">XPTO vegetables garden</string>
 
     <string-array name="ver">
         <item>Age Verification</item>
